@@ -11,7 +11,8 @@ var MAX_FAILS = 5, LOCK_SECONDS = 900, SESSION_SECONDS = 21600;
 function doGet() {
   return HtmlService.createHtmlOutput(DASHBOARD_HTML)
     .setTitle('BYC 2026 Results')
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);   // lets the installable BYC26 Results app show it full-screen
 }
 
 function leaders_() {
