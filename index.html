@@ -122,6 +122,24 @@ textarea{min-height:110px;resize:vertical}
 .anchors{display:flex;justify-content:space-between;font-family:var(--f-light);font-weight:300;font-size:.78rem;color:var(--muted);margin-top:2px}
 @media (max-width:440px){.scale.na{grid-template-columns:repeat(5,minmax(0,1fr))}.scale.na .nab{grid-column:span 5}.scale{grid-template-columns:repeat(5,minmax(0,1fr))}}
 
+/* 5-star rating */
+.rate{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
+.stars{display:flex;gap:4px}
+.star{position:relative;cursor:pointer;line-height:0;padding:2px}
+.star input{position:absolute;opacity:0;pointer-events:none}
+.star svg{width:38px;height:38px;fill:transparent;stroke:var(--line-hi);stroke-width:1.5;stroke-linejoin:round;transition:fill .12s,stroke .12s,transform .12s}
+.star.on svg{fill:var(--red);stroke:var(--red)}
+@media (hover:hover){
+  .stars:hover .star svg{fill:var(--red);stroke:var(--red)}
+  .stars .star:hover ~ .star svg{fill:transparent;stroke:var(--line-hi)}
+  .star:hover svg{transform:scale(1.1)}
+}
+.star input:focus-visible + svg{outline:2px solid var(--red-text);outline-offset:2px;border-radius:6px}
+.star-val{font-family:var(--f-light);font-weight:300;font-size:.85rem;color:var(--muted);min-width:2.2em;font-variant-numeric:tabular-nums}
+.rate .nab span{height:36px;padding:0 14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:440px){.star svg{width:34px;height:34px}.rate{gap:8px}.star-val{min-width:0}.svc .star{padding:1px}.svc .star svg{width:30px;height:30px}.svc .rate .nab span{padding:0 10px}}
+
 /* grid rows */
 .row{padding:14px 0;border-top:1px solid var(--line);display:grid;gap:8px}
 .row:first-child{border-top:0;padding-top:4px}
@@ -196,7 +214,7 @@ footer{text-align:center;font-family:var(--f-light);font-weight:300;font-size:.8
 /* ===== Settings: fill in when the Google Form backend is connected ===== */
 const CONFIG = {
   endpoint: "https://docs.google.com/forms/d/e/1FAIpQLScfS4I2KwUowNKXRbYIaQXObDWTZln68KjLlm2fFC_giVNxZA/formResponse",
-  fields: {"Language": "entry.945903068", "Consent": "entry.1468669298", "gender": "entry.2011993971", "age": "entry.387509041", "q1": "entry.1505360738", "q2": "entry.1113150198", "q2_other": "entry.626085118", "q3": "entry.1911871177", "q4 [Friday PM — Relevance]": "entry.1730735298", "q4 [Friday PM — Impact]": "entry.954178913", "q4 [Friday PM — Worship]": "entry.1220516107", "q4 [Friday PM — Timekeeping]": "entry.1451428460", "q4 [Saturday AM — Relevance]": "entry.1908918380", "q4 [Saturday AM — Impact]": "entry.1825395069", "q4 [Saturday AM — Worship]": "entry.1693912464", "q4 [Saturday AM — Timekeeping]": "entry.538029417", "q4 [Saturday MID — Relevance]": "entry.630622010", "q4 [Saturday MID — Impact]": "entry.1940256057", "q4 [Saturday MID — Worship]": "entry.1713959793", "q4 [Saturday MID — Timekeeping]": "entry.624227485", "q4 [Saturday PM — Relevance]": "entry.1513395445", "q4 [Saturday PM — Impact]": "entry.1307265904", "q4 [Saturday PM — Worship]": "entry.1793774084", "q4 [Saturday PM — Timekeeping]": "entry.1055109812", "q4 [Sunday AM — Relevance]": "entry.1625235225", "q4 [Sunday AM — Impact]": "entry.326343030", "q4 [Sunday AM — Worship]": "entry.396095452", "q4 [Sunday AM — Timekeeping]": "entry.1853425861", "q5": "entry.1388530692", "q6 [Education Talk]": "entry.1925206732", "q6 [Career Talk]": "entry.392842597", "q6 [Getting Ready for Marriage]": "entry.1836787043", "q6 [Youth Choirs and Arts Presentations]": "entry.1431365926", "q7 [Friday PM — Opening service]": "entry.437658667", "q7 [Saturday AM — Morning service]": "entry.769919550", "q7 [Saturday MID — Education Talk]": "entry.118610826", "q7 [Saturday MID — Career Talk]": "entry.1265805920", "q7 [Saturday MID — Getting Ready for Marriage]": "entry.995985641", "q7 [Saturday MID — Youth Choirs & Arts Presentations]": "entry.705168164", "q7 [Saturday PM — Evening service]": "entry.465851351", "q7 [Sunday AM — Closing service]": "entry.1173918254", "q8": "entry.957411453", "q9": "entry.1504095250", "q9_other": "entry.1784000659", "q10 [Registration, reception and guidance]": "entry.1100936058", "q10 [Communication and announcements]": "entry.1325871615", "q10 [Programme coordination and starting on time]": "entry.21069304", "q10 [Opportunities for youth participation and fellowship]": "entry.667426062", "q10 [Public-address (PA) system: clarity and audibility]": "entry.1917643533", "q10 [Music and worship coordination]": "entry.1299282069", "q11": "entry.9474768", "q12 [Cleanliness and hygiene]": "entry.2126142607", "q12 [Sleeping arrangements and comfort]": "entry.555318653", "q12 [Water, bathrooms and other facilities]": "entry.448668546", "q13 [Food quality and variety]": "entry.206410046", "q13 [Adequacy of portions]": "entry.93854931", "q13 [Meal timing and serving arrangements]": "entry.99830026", "q13 [Cleanliness and food hygiene]": "entry.1669707696", "q14": "entry.1956982931", "q15 [Punctuality and coordination]": "entry.1163901401", "q15 [Safety and convenience]": "entry.1469489415", "q15 [Communication about pickup/drop-off]": "entry.1731503855", "q16": "entry.1966373026", "q16_other": "entry.1303399820", "q17": "entry.1603511225", "q18": "entry.1711323729", "q19": "entry.1048543599"}
+  fields: {"Language": "entry.945903068", "Scale": "entry.430027973", "Consent": "entry.1468669298", "gender": "entry.2011993971", "age": "entry.387509041", "q1": "entry.1505360738", "q2": "entry.1113150198", "q2_other": "entry.626085118", "q3": "entry.1911871177", "q4 [Friday PM — Relevance]": "entry.1730735298", "q4 [Friday PM — Impact]": "entry.954178913", "q4 [Friday PM — Worship]": "entry.1220516107", "q4 [Friday PM — Timekeeping]": "entry.1451428460", "q4 [Saturday AM — Relevance]": "entry.1908918380", "q4 [Saturday AM — Impact]": "entry.1825395069", "q4 [Saturday AM — Worship]": "entry.1693912464", "q4 [Saturday AM — Timekeeping]": "entry.538029417", "q4 [Saturday MID — Relevance]": "entry.630622010", "q4 [Saturday MID — Impact]": "entry.1940256057", "q4 [Saturday MID — Worship]": "entry.1713959793", "q4 [Saturday MID — Timekeeping]": "entry.624227485", "q4 [Saturday PM — Relevance]": "entry.1513395445", "q4 [Saturday PM — Impact]": "entry.1307265904", "q4 [Saturday PM — Worship]": "entry.1793774084", "q4 [Saturday PM — Timekeeping]": "entry.1055109812", "q4 [Sunday AM — Relevance]": "entry.1625235225", "q4 [Sunday AM — Impact]": "entry.326343030", "q4 [Sunday AM — Worship]": "entry.396095452", "q4 [Sunday AM — Timekeeping]": "entry.1853425861", "q5": "entry.1388530692", "q6 [Education Talk]": "entry.1925206732", "q6 [Career Talk]": "entry.392842597", "q6 [Getting Ready for Marriage]": "entry.1836787043", "q6 [Youth Choirs and Arts Presentations]": "entry.1431365926", "q7 [Friday PM — Opening service]": "entry.437658667", "q7 [Saturday AM — Morning service]": "entry.769919550", "q7 [Saturday MID — Education Talk]": "entry.118610826", "q7 [Saturday MID — Career Talk]": "entry.1265805920", "q7 [Saturday MID — Getting Ready for Marriage]": "entry.995985641", "q7 [Saturday MID — Youth Choirs & Arts Presentations]": "entry.705168164", "q7 [Saturday PM — Evening service]": "entry.465851351", "q7 [Sunday AM — Closing service]": "entry.1173918254", "q8": "entry.957411453", "q9": "entry.1504095250", "q9_other": "entry.1784000659", "q10 [Registration, reception and guidance]": "entry.1100936058", "q10 [Communication and announcements]": "entry.1325871615", "q10 [Programme coordination and starting on time]": "entry.21069304", "q10 [Opportunities for youth participation and fellowship]": "entry.667426062", "q10 [Public-address (PA) system: clarity and audibility]": "entry.1917643533", "q10 [Music and worship coordination]": "entry.1299282069", "q11": "entry.9474768", "q12 [Cleanliness and hygiene]": "entry.2126142607", "q12 [Sleeping arrangements and comfort]": "entry.555318653", "q12 [Water, bathrooms and other facilities]": "entry.448668546", "q13 [Food quality and variety]": "entry.206410046", "q13 [Adequacy of portions]": "entry.93854931", "q13 [Meal timing and serving arrangements]": "entry.99830026", "q13 [Cleanliness and food hygiene]": "entry.1669707696", "q14": "entry.1956982931", "q15 [Punctuality and coordination]": "entry.1163901401", "q15 [Safety and convenience]": "entry.1469489415", "q15 [Communication about pickup/drop-off]": "entry.1731503855", "q16": "entry.1966373026", "q16_other": "entry.1303399820", "q17": "entry.1603511225", "q18": "entry.1711323729", "q19": "entry.1048543599"}
 };
 
 const T = s => s[state.lang] ?? s.en;
@@ -222,7 +240,8 @@ const UI = {
   allApply: L("Select all that apply", "Sankhani zonse zokhudzana"),
   specify: L("Please specify", "Zitchuleni"),
   answer: L("Your answer", "Yankho lanu"),
-  scaleAnch: L(["1 = Poor", "10 = Excellent"], ["1 = Zosakhala bwino", "10 = Zabwino kwambiri"]),
+  scaleAnch: L(["1 = Poor", "5 = Excellent"], ["1 = Zosakhala bwino", "5 = Zabwino kwambiri"]),
+  starsOf: L("{n} of 5 stars", "nyenyezi {n} mwa 5"),
   naNote: L("N/A = did not attend / not applicable", "N/A = sindinapezekeko / sizikukhudza"),
   restored: L("We kept your unfinished answers on this device.", "Tasunga mayankho anu omwe simunamalize pa chipangizochi."),
   startOver: L("Start over", "Yambiranso"),
@@ -242,7 +261,7 @@ const BLOCKS = [
 const attended = k => (state.a.q3 || []).includes(k);
 const blockOpt = b => ({v:`${b.k} — ${b.what.en}`, l:L(`${b.when.en} — ${b.what.en}`, `${b.when.ny} — ${b.what.ny}`), sub:b.who, block:b.k});
 
-const TEN = ["1","2","3","4","5","6","7","8","9","10"];
+const FIVE = ["1","2","3","4","5"];
 const DNA = "Did not attend";
 const o = (en, ny) => ({v:en, l:L(en, ny)});
 const OTHER = {v:"Other", l:L("Other","Zina"), other:true};
@@ -266,7 +285,7 @@ const SECTIONS = [
  {key:"C", title:L("Conference services & spiritual experience","Maserevisi a msonkhano ndi zochitika zauzimu"), items:[
    {id:"q3", n:3, type:"multi", req:true, t:L("Which of these conference programme blocks did you attend?","Ndi magawo ati a pologalamu ya msonkhano omwe munapezekapo?"), opts:BLOCKS.map(blockOpt).map(x=>({...x, v:x.block}))},
    {id:"q4", n:4, type:"services", req:true, t:L("Please rate the services you attended.","Chonde lingani mapemphero omwe munapezekapo."),
-    hint:L("1 = Poor / not useful · 10 = Excellent / highly useful. For Saturday MID, rate learning and engagement rather than an altar experience.","1 = Zosakhala bwino / zosathandiza · 10 = Zabwino kwambiri / zothandiza kwambiri. Pa Loweruka masana, lingani zomwe munaphunzira ndi kutenga nawo mbali, osati zochitika za paguwa."),
+    hint:L("1 = Poor / not useful · 5 = Excellent / highly useful. For Saturday MID, rate learning and engagement rather than an altar experience.","1 = Zosakhala bwino / zosathandiza · 5 = Zabwino kwambiri / zothandiza kwambiri. Pa Loweruka masana, lingani zomwe munaphunzira ndi kutenga nawo mbali, osati zochitika za paguwa."),
     crit:[
      {k:"Relevance", l:L("Message/topic relevance or programme content","Kufunika kwa uthenga/mutu kapena zomwe zinali mu pologalamu")},
      {k:"Impact", l:L("What I learnt / practical and spiritual impact","Zomwe ndaphunzira / phindu pa moyo ndi pa uzimu")},
@@ -343,7 +362,7 @@ const SECTIONS = [
 ];
 
 /* ===== state ===== */
-const KEY = "byc26-review-draft";
+const KEY = "byc26-review-draft-v2";  // v2 = 5-star scale; older 1–10 drafts are ignored
 const state = {lang:"en", view:"cover", sec:0, a:{}, errors:{}, restored:false, sending:false, sendErr:false, sentPreview:false};
 const store = {
   load(){ try{ return JSON.parse(localStorage.getItem(KEY) || "null"); }catch(e){ return null; } },
@@ -382,11 +401,14 @@ function otherBox(q){
   if (!on) return "";
   return `<input class="other-in" id="${q.id}_other" data-text="${q.id}_other" placeholder="${esc(T(UI.specify))}" value="${esc(state.a[q.id+"_other"]||"")}" aria-label="${esc(T(UI.specify))}">`;
 }
+/* 5-star rating: stars fill from the first up to the chosen one; optional N/A chip */
 function scaleHTML(name, cur, withNA, label, single){
-  const vals = withNA ? [...TEN, "N/A"] : TEN;
   const bind = single ? `data-q="${name}"` : `data-grid="${name}"`;
-  return `<div class="scale ${withNA?"na":""}" role="radiogroup" aria-label="${esc(label)}">` + vals.map((v,i) =>
-    `<label class="pill ${v==="N/A"?"nab":""}"><input type="radio" id="${name}-${i}" name="${name}" value="${v}" ${cur===v?"checked":""} ${bind}><span>${v}</span></label>`).join("") + `</div>`;
+  const n = FIVE.includes(cur) ? +cur : 0;
+  const stars = FIVE.map((v,i) =>
+    `<label class="star ${+v<=n?"on":""}"><input type="radio" id="${name}-${i}" name="${name}" value="${v}" ${cur===v?"checked":""} ${bind}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.83 5.95 6.5.78-4.8 4.5 1.24 6.47L12 17.3l-5.77 3.2 1.24-6.47-4.8-4.5 6.5-.78z"/></svg><span class="sr">${esc(fmt(T(UI.starsOf), {n:v}))}</span></label>`).join("");
+  const na = withNA ? `<label class="pill nab"><input type="radio" id="${name}-na" name="${name}" value="N/A" ${cur==="N/A"?"checked":""} ${bind}><span>N/A</span></label>` : "";
+  return `<div class="rate" role="radiogroup" aria-label="${esc(label)}"><div class="stars">${stars}</div><span class="star-val" aria-hidden="true">${n?`${n}/5`:""}</span>${na}</div>`;
 }
 function renderQ(q){
   const err = state.errors[q.id] ? `<div class="err" role="alert">${esc(state.errors[q.id])}</div>` : "";
@@ -401,7 +423,8 @@ function renderQ(q){
     body = optsOf(q).map((op,i)=>optionHTML(q,op,"checkbox",i)).join("") + otherBox(q);
   } else if (q.type === "scale"){
     const a = T(UI.scaleAnch);
-    body = scaleHTML(q.id, state.a[q.id], false, T(q.t), true) +`<div class="anchors"><span>${esc(a[0])}</span><span>${esc(a[1])}</span></div>`;
+    extraHint = `<p class="hint">${esc(a[0])} · ${esc(a[1])}</p>`;
+    body = scaleHTML(q.id, state.a[q.id], false, T(q.t), true);
   } else if (q.type === "grid"){
     const rows = rowsOf(q);
     const grid = state.a[q.id] || {};
@@ -418,13 +441,13 @@ function renderQ(q){
     const bl = BLOCKS.filter(b=>attended(b.k));
     const grid = state.a[q.id] || {};
     const a = T(UI.scaleAnch);
-    extraHint = `<p class="hint">${esc(T(UI.naNote))}</p>`;
+    extraHint = `<p class="hint">${esc(a[0])} · ${esc(a[1])} · ${esc(T(UI.naNote))}</p>`;
     body = bl.length ? bl.map(b => `<div class="svc"><div class="svc-head"><div><div class="svc-when">${esc(T(b.when))}</div><div class="svc-who">${esc(T(b.what))}${b.who?` · ${esc(b.who)}`:""}</div></div></div>` +
       q.crit.map(c => {
         const key = `${b.k}|${c.k}`;
         const lab = (b.k === "Saturday MID" && c.mid) ? c.mid : c.l;
         return `<div class="crit"><div class="crit-l">${esc(T(lab))}</div>${scaleHTML(`${q.id}__${b.k.replace(/\s/g,"_")}__${c.k}`, grid[key], true, `${T(b.when)} · ${T(lab)}`)}</div>`;
-      }).join("") + `</div>`).join("") + `<div class="anchors"><span>${esc(a[0])}</span><span>${esc(a[1])}</span></div>`
+      }).join("") + `</div>`).join("")
       : `<div class="empty-note">${esc(T(UI.noneAttended))}</div>`;
   } else if (q.type === "text"){
     body = `<textarea id="${q.id}" data-text="${q.id}" placeholder="${esc(T(UI.answer))}" aria-label="${esc(T(q.t))}">${esc(state.a[q.id]||"")}</textarea>`;
@@ -521,7 +544,7 @@ function validateSection(){
 
 /* ===== payload: one flat row, English values whatever the language ===== */
 function payload(){
-  const a = state.a, out = {"Language": state.lang === "ny" ? "Chichewa" : "English", "Consent": a.consent || ""};
+  const a = state.a, out = {"Language": state.lang === "ny" ? "Chichewa" : "English", "Scale": "1-5 stars", "Consent": a.consent || ""};
   const put = (k, v) => out[k] = v;
   for (const s of SECTIONS) for (const q of s.items){
     const shown = visible(q);
